@@ -1,3 +1,3 @@
- policy "gcp-instance-type" {
+ policy "gcp-instance-image" {
    enforcement_level = "hard-mandatory"
 }
