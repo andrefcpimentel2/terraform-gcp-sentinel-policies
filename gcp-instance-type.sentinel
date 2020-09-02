@@ -53,8 +53,7 @@ validate_attribute_in_list = func(type, attribute, allowed_values) {
 
     # Skip resource instances that are being destroyed
     # to avoid unnecessary policy violations.
-    # Used to be: if length(r.diff) == 0
-    if r.destroy and not r.requires_new {
+    if r.destroy {
       print("Skipping resource", address, "that is being destroyed.")
       continue
     }
@@ -68,7 +67,7 @@ validate_attribute_in_list = func(type, attribute, allowed_values) {
       # validated = false
     } else {
       # Validate that each instance has allowed value
-      if r.applied[attribute] else "" not in allowed_values {
+      if (r.applied[attribute] else "") not in allowed_values {
         print("Resource", address, "has attribute", attribute, "with value",
               r.applied[attribute] else "",
               "that is not in the allowed list:", allowed_values)
@@ -83,18 +82,15 @@ validate_attribute_in_list = func(type, attribute, allowed_values) {
 ##### Lists #####
 
 # Allowed GCP Machine Types
-# We don't include n1-standard-1 to illustrate overriding failed policy
 allowed_types = [
+  "n1-standard-1",
   "n1-standard-2",
   "n1-standard-4",
 ]
 
 ##### Rules #####
 
-# Call the validation function
-machines_validated = validate_attribute_in_list("google_compute_instance",
-                     "machine_type", allowed_types)
-# Main rule
+# Main rule that calls the validation function and evaluates results
 main = rule {
-  machines_validated
+  validate_attribute_in_list("google_compute_instance", "machine_type", allowed_types)
 }
