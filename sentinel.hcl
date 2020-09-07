@@ -11,7 +11,13 @@ module "tfconfig-functions" {
 }
 
 
- policy "gcp-instance-size" {
+policy "gcp-instance-size" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/gcp/restrict-gce-machine-type.sentinel"
-   enforcement_level = "soft-mandatory"
+  enforcement_level = "hard-mandatory"
+}
+
+    
+policy "enforce-mandatory-labels" {
+  source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/gcp/enforce-mandatory-labels.sentinel"
+  enforcement_level = "hard-mandatory"
 }
