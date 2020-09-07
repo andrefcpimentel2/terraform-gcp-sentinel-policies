@@ -1,3 +1,3 @@
- policy "mandatory-tags" {
-   enforcement_level = "hard-mandatory"
+ policy "gcp-instance-size" {
+   enforcement_level = "soft-mandatory"
 }
