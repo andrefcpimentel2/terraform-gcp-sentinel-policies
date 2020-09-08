@@ -12,7 +12,7 @@ module "tfconfig-functions" {
 
 
 policy "gcp-instance-size" {
-  source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/gcp/restrict-gce-machine-type.sentinel"
+  source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/cloud-agnostic/allowed-resources.sentinel"
   enforcement_level = "hard-mandatory"
 }
 
