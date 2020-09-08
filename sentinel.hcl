@@ -11,7 +11,7 @@ module "tfconfig-functions" {
 }
 
 
-policy "gcp-instance-size" {
+policy "allowed-resources" {
   source = "https://raw.githubusercontent.com/hashicorp/terraform-guides/master/governance/third-generation/cloud-agnostic/allowed-resources.sentinel"
   enforcement_level = "hard-mandatory"
 }
